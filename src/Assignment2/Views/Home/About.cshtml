@@ -1,0 +1,63 @@
+﻿@using Assignment2;
+
+@model IEnumerable<Assignment2.Models.Enquiry>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script>
+    $(document).ready(function ()
+    {
+        $(document).ready(function ()
+        {
+            $("#btnSubmit").click(function()
+            {
+                $.ajax
+                ({
+                    type: "POST", //HTTP POST Method
+                    url: "EnquiryController/About", // Controller/View
+                    data://Passing data
+                    {
+                        EnquiryID: $("#txtEnquiryID").val(), //Reading text box values using Jquery
+                        Email: $("#txtEmail").val(),
+                        Message: $("#txtMessage").val()
+                    }
+                });
+            });
+        });
+    });
+</script>
+
+<fieldset>
+    <div class="form-horizontal">
+        <div class="editor-label">
+            Enquiry ID
+        </div>
+        <div class="editor-label">
+            <input type="text" id="txtEnquiryID" />
+        </div>
+
+        <div class="editor-label">
+            Email
+        </div>
+        <div class="editor-label">
+            <input type="text" id="txtEmail" />
+        </div>
+
+        <div class="editor-label">
+            Message
+        </div>
+        <div class="editor-label">
+            <input type="text" id="txtMessage" />
+        </div>
+        <div class="editor-label">
+            <br />
+            <input class="btn-default" type="button" id="btnSubmit" value="Save" />
+        </div>
+    </div>
+</fieldset>
+
+
+

@@ -1,0 +1,49 @@
+@using Assignment2;
+
+@model MovieViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Movies Out Now</h2>
+
+<table class="table">
+    <tr>
+        <th>Title</th>
+        <th>Short Desc</th>
+        <th>Long Desc</th>
+        <th>Image</th>
+        <th>Price</th>
+    </tr>
+    @foreach (Movie m in Model.Movies)
+    {
+        <tr>
+            <td>@m.Title</td>
+            <td>@m.ShortDescription</td>
+            <td>@m.LongDescription</td>
+            <td><img src="@Url.Content(m.ImageUrl)" alt="IMAGES" /></td>
+            <td>$@Math.Round(@m.Price, 2)</td>
+        </tr>
+    }
+</table>
+
+<h2>Movies Coming Soon</h2>
+
+<table class="table">
+    <tr>
+        <th>Title</th>
+        <th>Short Desc</th>
+        <th>Long Desc</th>
+        <th>Image</th>
+    </tr>
+    @foreach (MovieComingSoon m in Model.MoviesSoon)
+    {
+        <tr>
+            <td>@m.Title</td>
+            <td>@m.ShortDescription</td>
+            <td>@m.LongDescription</td>
+            <td><img src="@Url.Content(m.ImageUrl)" alt="IMAGES" /></td>
+        </tr>
+    }
+</table>

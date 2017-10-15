@@ -1,0 +1,60 @@
+@model IEnumerable<Assignment2.Models.CineplexMovie>
+
+@{
+    ViewData["Title"] = "Sessions";
+}
+
+<h2>Movie Session</h2>
+
+<form asp-controller="CineplexMovies" asp-action="Index">
+        <p>
+            Title: <input type="text" name="SearchString" value="@ViewData["currentFilter"]">
+            <input type="submit" value="Filter" />
+        </p>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th><a asp-action="Index" asp-route-sortOrder="@ViewBag.CinemaSortParm">@Html.DisplayNameFor(model => model.Cineplex.Location)</a></th>
+            <th><a asp-action="Index" asp-route-sortOrder="@ViewBag.MovieSortParm">@Html.DisplayNameFor(model => model.Movie.Title)</a></th>
+            <th>Short Desc</th>
+            <th>Session Times</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var m in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(model => m.Cineplex.Location)</td>
+                <td>@Html.DisplayFor(model => m.Movie.Title)</td>
+                <td>@Html.DisplayFor(model => m.Movie.ShortDescription)</td>
+                <td>@Html.DisplayFor(model => m.Session.SessionTime1, "ShortDateTime")</td>
+                <td>@Html.DisplayFor(model => m.Session.SessionTime2, "ShortDateTime")</td>
+            </tr>
+        }
+    </tbody>
+</table>
+@*<p>
+        <a asp-action="Create">Create New</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+    @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>
+            </tr>
+    }
+        </tbody>
+    </table>
+*@
